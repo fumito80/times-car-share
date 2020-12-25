@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link href="css/ui-lightness/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="css/kickstart.css" type="text/css" media="all">
+  <link href="css/popup.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <i class="icon-remove" title="閉じる"></i>
+  <div id="caption">タイムズカープラス マップで検索</div>
+  <form class="inputForm">
+    <div class="textright">
+      <button id="doit" class="disabled square" disabled="disabled">検索開始</button>
+    </div>
+    <ul class="tabs">
+      <li><a href="#tab2">地図検索</a></li>
+      <li><a href="#tab1">お気に入りステーション</a></li>
+    </ul>
+    <div class="tabPanel tabSearch" id="tab2">
+      <fieldset class="findwhere">
+        <legend>検索条件</legend>
+          <label>地図の中心の住所
+            <div>
+              <input type="text" class="square" id="centerAddress" placeholder="現在地" />
+            </div>
+          </label>
+          <label>表示順
+            <div>
+              <select id="selectListOrder">
+                <option value="WALKING" selected>徒歩ルート距離順</option>
+                <!--
+                <option value="BICYCLING">自転車ルート</option>
+                <option value="TRANSIT">電車・バスルート</option>
+                <option value="DRIVING">車ルート</option>
+                -->
+                <option value="S">直線距離順</option>
+              </select>
+            </div>
+          </label>
+        <ul class="descs">
+          <li>中心地から半径または徒歩ルートで3km圏内を<br>5件ずつ検索します。</li>
+          <li>一度に表示できる件数は15件までです。</li>
+        </ul>
+      </fieldset>
+    </div>
+    <div class="tabPanel tabFavorite" id="tab1">
+      <div id="setting">
+        <div class="iconbutton">すべて選択<span class="chkall ui-icon-check"></span></div>
+        <i class="icon-edit" title="名前の編集"></i>
+      </div>
+      <table cellspacing="2">
+        <tbody id="listitem"></tbody>
+      </table>
+      <br>
+      <fieldset class="inputAddress">
+        <legend>地図の中心の住所<!--<input type="checkbox" id="checkMap" /><label for="checkMap">地図モードで取得</label>--></legend>
+        <input type="text" class="square" id="centerAddressFav" placeholder="現在地" />
+      </fieldset>
+    </div>
+  </form>
+  <script src="js/underscore-min.js"></script>
+  <script src="js/jquery-2.0.0.min.js"></script>
+  <script src="js/backbone-min.js"></script>
+  <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+  <script src="js/popup.js"></script>
+</body>
+</html>

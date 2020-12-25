@@ -1,0 +1,307 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+  min-width: 290px;
+  font-family: "Meiryo UI";
+}
+div,td {
+  white-space:nowrap;
+}
+td {
+  background: #eef;
+  border-radius:5px;
+  /*padding: 3px;*/
+  padding-right: 2.0em;
+}
+fieldset {
+  -webkit-border-radius: 4px;
+  margin-top: 2px;
+}
+#listitem div {
+  /*font-size: 0.9em;*/
+  cursor: default;
+}
+legend label {
+  /*font-size: 90%;*/
+}
+input {
+  margin-top: 3px;
+}
+#centerAddress {
+  width: 100%;
+}
+#centerAddressFav {
+  width: 100%;
+}
+label {
+  display: block;
+}
+#caption {
+  /*font-size: 0.9em;*/
+  padding-bottom: 0.2em;
+}
+#caption div {
+  float: right;
+  cursor: pointer;
+  margin-left: 5px;
+}
+i.icon-edit {
+  float: right;
+  margin-top: 18px;
+  margin-right: 10px;
+  cursor: pointer;
+  color: #666;
+}
+i.icon-edit:hover {
+  color: #248EF4;
+}
+div.iconbutton {
+  margin-top: 15px;
+  float: left;
+  /*font-size: 75%;*/
+  font-weight: normal;
+  border: 1px solid #fff;
+  border-radius:2px;
+  padding: 2px;
+  cursor: pointer;
+}
+div.iconbutton:hover {
+  color: #248EF4;
+  /* border: 1px solid #248EF4; */
+}
+div.iconbutton:hover span {
+  background-image: url(images/uiicons_228ef1_256x240.png);
+}
+.iconbutton .ui-icon-check {
+  height: 14px;
+  padding-left: 2px;
+  background-image: url(images/ui-icons_ffffff_256x240.png);
+}
+#divPanel {
+  position: absolute;
+  z-index: 2;
+  padding: 5px;
+  border-radius:2px;
+  display: none;
+  border: 1px solid #ddd;
+  background: #fff;
+  right: 0px;
+  top: 21px;
+  -webkit-box-shadow : rgba(0, 0, 0, 0.498039) 1px 1px 1px;
+}
+#divPanel div.caption {
+  /*font-size: 0.8em;*/
+  padding-top: 3px;
+  padding-right: 3px;
+  cursor: default;
+  clear: both;
+  cursor: pointer;
+}
+#divPanel hr {
+  width: 90%;
+  border-width: 1px 0px 0px 0px;
+  height: 0px;
+}
+.ui-widget {
+  /*font-size: 0.8em;*/
+}
+.ui-icon {
+  background-image: url(images/ui-icons_222222_256x240.png);
+}
+.ui-icon-off {
+  background-image: url(images/ui-icons_ffffff_256x240.png);
+}
+.ui-icon-check {
+  float: left;
+  width: 16px;
+  height: 16px;
+  background-image: url(images/ui-icons_ffffff_256x240.png);
+}
+.iconbutton .chkall {
+  background-image: url(images/ui-icons_999999_256x240.png);
+}
+#listitem .ui-icon-check {
+  border-radius:2px;
+  border: 1px solid #EEF;
+  margin-right: 2px;
+}
+#divPanel .checked {
+  background-image: url(images/ui-icons_222222_256x240.png);
+}
+#listitem div.station {
+  padding-top: 2px;
+}
+#listitem td i.icon-ok {
+  color: #FFF;
+  border: 1px solid #EEF;
+  border-radius:2px;
+  float: left;
+  margin-right: 3px;
+}
+#listitem td:hover i.icon-ok {
+  border-color: #CC3;
+}
+#listitem td i.checked {
+  color: #248EF4;
+}
+#listitem .ui-selecting .ui-icon-check {
+  border-color: #CC3;
+}
+/* ソート中アイテム */
+#listitem .ui-sortable-helper {
+  background: #EEF;
+  border-radius:5px;
+}
+#listitem .ui-sortable-placeholder td {
+  position: relative;
+  padding: 0px;
+  background: #248EF4;
+}
+#listitem .ui-sortable-placeholder div {
+  position: absolute;
+  top: -8px;
+  left: -13px;
+  width: 16px;
+  height: 16px;
+  background-image: url(images/ui-icons_228ef1_256x240.png);
+}
+#listitem .ui-sortable-placeholder {
+  height: 1px;
+  margin-bottom: -2px;
+  top: -1px;
+  padding: 0px;
+  position: relative;
+  visibility: visible !important;
+}
+#listitem .ui-sortable-helper {
+  opacity: .7;
+}
+#listitem tr {
+  display: table-row !important;
+}
+.tabPanel {
+  margin-top: 10px;
+}
+.tabSearch {
+  margin-top: 60px;
+  /*font-size: 80%;*/
+}
+.tabSearch input {
+  font-size: 1.1em;
+}
+.tabSearch select {
+  margin: 2px;
+}
+.tabSearch select {
+  margin: 2px;
+}
+.tabSearch .descs {
+  /*font-size: 0.9em;*/
+  line-height: 1.2em;
+  padding: 3px;
+}
+ul.descs {
+  margin: 15px 0 10px 15px;
+}
+.findwhere {
+  line-height: 1.3em;
+}
+.findwhere label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.findwhere > div {
+  margin: 15px 0px;
+}
+.findwhere hr {
+  margin: 10px 0px;
+  margin-top: 15px;
+  border-style: inset;
+  border-width: 1px;
+}
+.tabFavorite fieldset {
+  margin-top: 2px;
+}
+.tabFavorite table {
+  border-collapse: separate;
+}
+.tabFavorite input {
+  /*font-size: 0.9em;*/
+}
+.tabFavorite fieldset legend {
+  /*font-size: 80%;*/
+}
+.tabFavorite fieldset div {
+  /*font-size: 80%;*/
+}
+.tabFavorite table {
+  width: 100%;
+}
+.tabs {
+  margin-top: 10px;
+  border-bottom: 1px solid #666;
+}
+.tab {
+  float: left;
+  padding: 4px;
+  margin-left: 3px;
+  /*font-size: 80%;*/
+  color: #333;
+  border: 1px solid #666;
+  border-bottom: 0;
+  -webkit-border-top-left-radius: 2px;
+  -webkit-border-top-right-radius: 2px;
+}
+.selectedTab {
+  background: #DFEFFC;
+  font-weight: bold;
+  color: #2E6E9E;
+  -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.498039);
+}
+.hoverTab {
+  color: #00F;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.498039);
+}
+.inputDefault {
+  color: #666;
+  font-style: italic;
+}
+#sliderRange {
+  margin: 20px 20px 10px 10px;
+  position: relative;
+}
+#sliderTime {
+  width: 250px;
+  margin: 20px 20px 10px 10px;
+  position: relative;
+}
+.scaleHalf {
+  position: absolute;
+  top: -15px;
+  color: #ccc;
+}
+.scaleNum {
+  position: absolute;
+  top: -15px;
+}
+#selectRangeFrom,#selectRangeTo {
+  /*font-size: 0.9em;*/
+}
+div.textright {
+  text-align: right;
+  margin-top:10px;
+  padding-right: 20px;
+}
+i.icon-remove {
+  color: #999;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 1.4em;
+}
+i.icon-remove:hover {
+  color: black;
+}
