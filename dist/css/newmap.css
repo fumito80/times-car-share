@@ -33,6 +33,34 @@ div.mainframe {
   margin-top: 0px;
   padding: 8px;
 }
+#selectDate {
+  width: 136px;
+  padding: 1px;
+  font-family: 'Meiryo', Helvetica, Arial;
+  font-size: 9pt;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+}
+#selectDate:focus {
+  box-shadow: 0 0 7px #6DB9FF;
+  border: 1px solid #50B1FE;
+}
+input[type="date" i]::-webkit-calendar-picker-indicator {
+  width: 100%;
+  margin-inline-start: 0;
+  background-position-x: 100%;
+}
+#selectDate::before {
+  content: attr(title);
+  position: absolute;
+  pointer-events: none;
+}
+#selectHour {
+  font-family: Meiryo, Helvetica, Arial;
+  font-size: 9pt;
+  padding: 2px;
+}
 .noborder {
   border: 0;
   white-space: nowrap;
@@ -160,6 +188,7 @@ img.loading {
 }
 .divInputSelect button {
   margin-left: 4px;
+  padding: 5px;
   font-size: 1.0em;
 }
 .divInputSelect button:hover {
@@ -268,10 +297,10 @@ img.loading {
   border: 1px solid #000;
 /*  -webkit-box-shadow: 0px 1px 10px #000; */
 }
-#stations_block .station.hilite .stationBorder  {
-  /* background: #D6EEFA; */
-  /*  -webkit-box-shadow: 0px 1px 10px #000; */
-}
+/* #stations_block .station.hilite .stationBorder  {
+  background: #D6EEFA;
+   -webkit-box-shadow: 0px 1px 10px #000;
+} */
 #stations_block div.vsplitbar {
   position: absolute;
   z-index: 98;
@@ -350,7 +379,7 @@ span.ordernum {
 .unvisible {
   visibility: hidden;
 }
-#map_canvas div.gmnoprint:first-child:not([controlwidth]) {
+/* #map_canvas div.gmnoprint:first-child:not([controlwidth]) {
   width: 60px!important;
   height: 8px!important;
   margin-top: 36px!important;
@@ -365,7 +394,7 @@ div.searching {
   margin-left: -24px!important;
   opacity: 1!important;
   background-image: url(images/searching.gif);
-}
+} */
 div.gmnoprint img[src$="marker_sprite.png"] {
   display: none;
 }

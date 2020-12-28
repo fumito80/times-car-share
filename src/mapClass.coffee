@@ -1,3 +1,6 @@
+import _ from "underscore"
+import Backbone from "backbone"
+
 ### const ###
 tp.ptAdjust  = 0.0032 # TimesPlus地図とGoogleMaps地図との補正値
 ### end const ###
@@ -5,7 +8,7 @@ tp.ptAdjust  = 0.0032 # TimesPlus地図とGoogleMaps地図との補正値
 # Backbone グーグルマップ マーカー View
 MarkerBaseView = Backbone.View.extend
 
-  initialize: ->
+  initialize: (@options) ->
     @model.on
       "change:contents": @renderMarker
       "change:selected": @renderSelectedIcon
@@ -181,8 +184,8 @@ tp.MapView = Backbone.View.extend {
     "focus form.inputForm input:text":    "onFocusInput"
     "blur form.inputForm input:text":     "onBlurInput"
 
-  initialize: (options) ->
-    {@collection, @markerViewClassName, @waitMSec, @searchMargin, @checkSearchRange, @searchStations} = options
+  initialize: (@options) ->
+    {@collection, @markerViewClassName, @waitMSec, @searchMargin, @checkSearchRange, @searchStations} = @options
     @model.on
       "change:address": @changeCenterAddress
       @
@@ -235,7 +238,7 @@ tp.MapView = Backbone.View.extend {
       latlng:  addressInfo.latlng
       {silent: true}
     @map = new google.maps.Map @$("#map_canvas")[0],
-      zoom: 15,
+      zoom: 16,
       center: @model.get("latlng")
       mapTypeId: google.maps.MapTypeId.ROADMAP
       scaleControl: true
@@ -576,8 +579,8 @@ tp.MapView = Backbone.View.extend {
   template: """
     <div class="divInputAddress">
       <form class="inputForm disabled">
-        <i class="icon-search disabled"></i>
         <input id="address" type="text" disabled="disabled" placeholder="現在地">
+        <i class="icon-search disabled"></i>
       </form>
     </div>
     <div id="map_canvas">

@@ -1,24 +1,14 @@
+import "jquery-ui/ui/widgets/draggable"
+import "./facybox"
+import "./jquery.scrollintoview.min"
+import "./commonClass"
+import "./mapClass"
+import "./mainClass"
+
 uid = (window.location.href.match /[\\?&]uid=([^&#]*)/)?[1]
 tp = chrome.extension.getBackgroundPage().window.tp
 tp.activity = tp.getActivity(uid)
 tp.activity.uid = uid
-
-if (tp.activity.startClassName isnt "FavoriteNomapView")
-  $LAB
-    .script("js/underscore-min.js")
-    .script("js/jquery-2.0.0.min.js").wait()
-    .script("js/backbone-min.js")
-    .script("js/jquery-ui-1.9.2.custom.min.js")
-    .script("css/facybox.js")
-    .script("js/application.js")
-    .script("https://maps.googleapis.com/maps/api/js?key=AIzaSyApuorSOF_bs5SLCz2IdhokQFZlC_ZoibM&callback=doneScriptLoad")
-else
-  $LAB
-    .script("js/underscore-min.js")
-    .script("js/jquery-2.0.0.min.js").wait()
-    .script("js/backbone-min.js")
-    .script("css/facybox.js")
-    .script("js/classesNomap.js").wait -> doneScriptLoad()
 
 chrome.tabs.getSelected null, (tab) ->
   chrome.pageAction.show(tab.id)
@@ -29,7 +19,7 @@ chrome.runtime.onMessage.addListener (message, sender) ->
     tp.activity = tp.getActivity(uid)
     tp.activity.misc.centerAddress = centerAddress
     appView.reset()
-    delete appView
+    appView = null
     run()
 
 run = ->
@@ -50,5 +40,7 @@ run = ->
   window.appView = new tp[startClassName] {}
   window.appView.run()
 
-doneScriptLoad = ->
+loadedGoogleMaps = ->
   jQuery -> run()
+
+google.maps.event.addDomListener(window, 'load', loadedGoogleMaps)

@@ -1,4 +1,8 @@
-$ = jQuery
+import _ from "underscore"
+import Backbone from "backbone"
+import "jquery-ui/ui/widgets/sortable"
+import "./jquery.balloon.min"
+
 $ ->
   # 汎用モデル
   PlainModel = Backbone.Model.extend {}
@@ -88,7 +92,7 @@ $ ->
       el: "#listitem"
       events:
         "click td": "onClick"
-      initialize: ->
+      initialize: (@options) ->
         @collection.on "add", @render, @
         @$el.sortable
           delay: 150
@@ -210,7 +214,7 @@ $ ->
 
     # タブの処理
     TabView: Backbone.View.extend
-      initialize: ->
+      initialize: (@options) ->
         @model.on "change:tabid", @onChangeTabid, @
       events:
         "click": "renderOnClick"
@@ -228,7 +232,7 @@ $ ->
 
     TabsView: Backbone.View.extend
       el: "ul.tabs li"
-      initialize: ->
+      initialize: (@options) ->
         inputCenterAddress = new @options.InputCenterAddress model: @model
         inputCenterAddressFav = new @options.InputCenterAddressFav model: @model
         @$el.each (i, el) =>

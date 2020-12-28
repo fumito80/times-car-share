@@ -1,3 +1,6 @@
+import _ from "underscore"
+import Backbone from "backbone"
+
 ### const ###
 # 車の色のイメージ名
 car_color_classes =
@@ -273,8 +276,8 @@ class SortableStationBaseView extends StationBaseView
   onHoverStation: (hovered, id, whichSelect) ->
     if (id is @model.id)
       if (hovered) then @$el.addClass("hover") else @$el.removeClass("hover")
-      if (whichSelect is "marker")
-        @$el.scrollintoview(50)
+      # if (whichSelect is "marker")
+      #   @$el.scrollintoview(50)
     else
       @$el.removeClass("hover")
 
@@ -451,7 +454,7 @@ StationSetBaseView = Backbone.View.extend
 
   el: "#stations_block"
 
-  initialize: (options) ->
+  initialize: (@options) ->
     @model.on
       "change:selectDate": "onChangeSelectDate"
       "change:selectHour": "onChangeSelectDate"
@@ -469,7 +472,15 @@ StationSetBaseView = Backbone.View.extend
   render: ->
     @$el.append @template
     @trigger "getSelectDateHour", container = {}
-    @$("#selectDate").html(container.selectDate.html()).change()
+    [minDate, maxDate] = container.selectDate.find('option:first, option:last').get().map (option) ->
+      option.value.substring(0, 10)
+    @$("#selectDate")[0].value = minDate
+    @$("#selectDate")
+      .attr("value", minDate)
+      .attr("min", minDate)
+      .attr("max", maxDate)
+      .change()
+    # @$("#selectDate").html(container.selectDate.html()).change()
     @$("#selectHour").html(container.selectHour.html()).val((new Date).getHours()).change()
     @
 
@@ -575,11 +586,11 @@ StationSetBaseView = Backbone.View.extend
 
   onDoneReadyLoads: (options) ->
     @$("div.divInputSelect")
-      .find("select,button,a").attr("disabled", "disabled")
+      .find("input,select,button,a").attr("disabled", "disabled")
     @doTeedaAjax(options)
 
   onDoneLoads: ->
-    @$("div.divInputSelect").find("select,button:not(.nextsta)").removeAttr("disabled")
+    @$("div.divInputSelect").find("input,select,button:not(.nextsta)").removeAttr("disabled")
 
   onUpdateLocalDB: (scd, station) ->
     @trigger "updateLocalDB", scd, station
@@ -591,12 +602,16 @@ StationSetBaseView = Backbone.View.extend
     @trigger "changeTimetable", {changeTimetable: true}
 
   onChangeDomSelectDate: (event) ->
+    dateValue = @$("#selectDate").val().replace(/-/g, "/")
+    sdate = dateValue + " (" + ["日", "月", "火", "水", "木", "金", "土"][(new Date(dateValue)).getDay()] + ")"
+    @$("#selectDate").attr("title", sdate)
     @model.set
       selectDateHour:
         date: @$("#selectDate").val()
         hour: @$("#selectHour").val()
 
   onChangeSelectDate: ->
+    # @$("#selectDate").val(@model.get("selectDate"))
     @$("#selectDate").val(@model.get("selectDate"))
     @$("#selectHour").val(@model.get("selectHour"))
 
@@ -605,8 +620,8 @@ StationSetBaseView = Backbone.View.extend
 
   template: """
     <div class="divInputSelect">
-      <select id="selectDate"></select>
-      <select id="selectHour"></select><button class="newtimetable small square" disabled="disabled" title="更新"><i class="icon-repeat"></i> 更新</button>
+      <input type="date" id="selectDate" disabled>
+      <select id="selectHour" disabled></select><button class="newtimetable small square" title="更新" disabled><i class="icon-repeat"></i> 更新</button>
     </div>
     <div class="stations custom-scroll-bar">
     </div>
@@ -700,6 +715,7 @@ class tp.SortableStationSetView extends StationSetMapBaseView
 
   constructor: (options) ->
     super(options)
+    @options = options
     @collection.on
       "sort":               @onSortRender
       "doneRenderDistance": @onDoneRenderDistance
@@ -708,7 +724,7 @@ class tp.SortableStationSetView extends StationSetMapBaseView
 
   render: ->
     super()
-    @$("div.divInputSelect").append """<a href="javascript:void(0)" class="nextsta" disabled="disabled">次順追加<i class="icon-plus"></i></a>"""
+    @$("div.divInputSelect").append """<a href="javascript:void(0)" class="nextsta" disabled="disabled"><i class="icon-plus"></i> 次順追加</a>"""
     @elHideStations = $("<div>", {"class": "hide"}).appendTo(@$(".stations"))
     for i in [0...@options.searchMargin]
       @$(".stations").append $("<div>", {"class": "hide"})
