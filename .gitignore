@@ -3,3 +3,4 @@ dist/app.js*
 dist/background.js*
 dist/popup.js*
 dist/script.js*
+times.zip

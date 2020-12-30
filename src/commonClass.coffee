@@ -518,10 +518,10 @@ StationSetBaseView = Backbone.View.extend
           lat: Math.round(latlng.lat() * 1000000) / 1000000
     formData =
       component: "station_stationMapPage"
-      action:    "ajaxCreateTimeTable"
-      time:      encodeURIComponent((new Date()).toString())
-      lonAjax:       ""
-      latAjax:       ""
+      action: "ajaxCreateTimeTable"
+      time: encodeURIComponent((new Date()).toString())
+      lonAjax: ""
+      latAjax: ""
       stationCdAjax: ""
       centerLon: lon
       centerLat: lat

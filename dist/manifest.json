@@ -1,7 +1,7 @@
 {
   "version": "1.2.0",
   "name": "タイムズカーシェア マップで検索",
-  "description": "タイムズカーシェアを地図から徒歩距離順で検索して、予約状況一覧を表示します",
+  "description": "タイムズカーシェアを地図から徒歩距離順で検索して予約状況一覧を表示します",
   "manifest_version": 2,
   "page_action": {
     "default_icon": "images/myicon.png",
@@ -13,16 +13,12 @@
   },
   "background": {
     "persistent": true,
-    "scripts": [
-      "background.js"
-    ]
+    "scripts": ["background.js"]
   },
   "content_scripts": [
     {
       "matches": ["https://share.timescar.jp/view/member/mypage.jsp"],
-      "js": [
-        "script.js"
-      ],
+      "js": ["script.js"],
       "run_at": "document_end"
     }
   ],
