@@ -7,17 +7,19 @@ const archiver = require('archiver');
 
 const config = require('./webpack.config.js');
 
-async function build(mode) {
-  return new Promise((resolve) => {
-    webpack({ ...config, mode })
-      .run((err, stats) => {
-        if (err) {
-          throw new Error(err);
-        }
-        console.log(stats.toString({ colors: true }));
-        resolve();
-      });
-  });
+function build(mode) {
+  return async function build() {
+    return new Promise((resolve) => {
+      webpack({ ...config, mode })
+        .run((err, stats) => {
+          if (err) {
+            throw new Error(err);
+          }
+          console.info(stats.toString({ colors: true }));
+          resolve();
+        });
+    });
+  }
 }
 
 async function archive() {
@@ -26,26 +28,23 @@ async function archive() {
   });
   zip.directory('dist/', false);
   zip.finalize();
-  const output = fs.createWriteStream(path.resolve(__dirname, 'times.zip'));
+  const manifest = fs.readFileSync(path.resolve(__dirname, 'dist/manifest.json'));
+  const { version } = JSON.parse(manifest);
+  const output = fs.createWriteStream(path.resolve(__dirname, `zips/v${version}.zip`));
   return new Promise((resolve) => {
     output.on('close', resolve);
     zip.pipe(output);
   });
 }
 
-function dev() {
-  return build('development');
-}
-
-function production() {
-  return build('production');
-}
+const dev = series(
+  build('development'),
+);
 
 const prd = series(
-  production,
+  build('production'),
   archive,
 );
 
-exports.archive = archive;
 exports.prd = prd;
 exports.default = dev;
